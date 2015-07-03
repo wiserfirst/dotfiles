@@ -1,0 +1,4 @@
+Plugin 'elixir-lang/vim-elixir'
+Plugin 'lambdatoast/elm.vim'
+Plugin 'vim-scripts/autoclose'
+Plugin 'sukima/xmledit'
