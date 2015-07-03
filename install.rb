@@ -7,7 +7,7 @@ Dir['.*'].each do |f|
     if File.symlink? target
       puts "removed symlink #{target}"
       File.unlink target
-    else
+    elsif File.file? target
       backup = target + '.bak'
       puts "backed up #{target} to #{backup}"
       File.rename target, backup
