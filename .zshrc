@@ -61,7 +61,8 @@ alias ltm='ls -tl | more'
 set -o vi
 export LC_CTYPE=en_US.UTF-8
 
-export PATH="/Users/wiser/.rbenv/shims:/Users/wiser/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="/Users/wiser/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/wiser/.composer/vendor/bin"
+eval "$(rbenv init -)"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # Preferred editor for local and remote sessions
@@ -70,8 +71,6 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
   export EDITOR='mvim'
 fi
-
-export JAVA_HOME=$(/usr/libexec/java_home)
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -114,7 +113,8 @@ alias gitdiff='git diff -w > diff.log && vi diff.log'
 
 setopt interactivecomments
 
-export PATH="$(brew --prefix josegonzalez/php/php55)/bin:$PATH:/Users/wiser/.composer/vendor/bin"
+#export JAVA_HOME=$(/usr/libexec/java_home)
+#export PATH="$(brew --prefix josegonzalez/php/php55)/bin:$PATH:/Users/wiser/.composer/vendor/bin"
 
 unset MAILCHECK
 MAILTO=
