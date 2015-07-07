@@ -63,7 +63,6 @@ export LC_CTYPE=en_US.UTF-8
 
 export PATH="/Users/wiser/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/wiser/.composer/vendor/bin"
 eval "$(rbenv init -)"
-# export MANPATH="/usr/local/man:$MANPATH"
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -112,9 +111,6 @@ alias gitdiff='git diff -w > diff.log && vi diff.log'
 [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
 setopt interactivecomments
-
-#export JAVA_HOME=$(/usr/libexec/java_home)
-#export PATH="$(brew --prefix josegonzalez/php/php55)/bin:$PATH:/Users/wiser/.composer/vendor/bin"
 
 unset MAILCHECK
 MAILTO=
