@@ -1,0 +1,21 @@
+#!/bin/sh
+
+brew_tap 'caskroom/cask'
+brew_install_or_upgrade 'brew-cask'
+
+brew cask install dropbox
+brew cask install filezilla
+brew cask install firefox
+brew cask install google-chrome
+brew cask install iterm2
+brew cask install macvim
+brew cask install qq
+brew cask install sequel-pro
+brew cask install sourcetree
+brew cask install sublime-text
+brew cask install virtualbox
+
+gem_install_or_update 'parity'
+
+brew_install_or_upgrade 'tree'
+brew_install_or_upgrade 'watch'
