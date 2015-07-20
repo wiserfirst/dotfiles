@@ -61,8 +61,11 @@ alias ltm='ls -tl | more'
 set -o vi
 export LC_CTYPE=en_US.UTF-8
 
-export PATH="/Users/wiser/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/wiser/.composer/vendor/bin"
-eval "$(rbenv init -)"
+export PATH="$HOME/.bin:$PATH:$HOME/.composer/vendor/bin"
+
+# recommended by brew doctor
+export PATH="/usr/local/bin:$PATH"
+eval "$(rbenv init - --no-rehash zsh)"
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
