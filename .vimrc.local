@@ -16,6 +16,7 @@ if (&t_Co == 256 || has('gui_running'))
   set guifont=Monaco:h14
   set lines=999 columns=999
   set guioptions-=r  "remove right-hand scroll bar
+  set guioptions-=L  "remove left-hand scroll bar
   if ($TERM_PROGRAM == 'iTerm.app')
     colorscheme solarized
   else
@@ -42,26 +43,26 @@ silent! autocmd VimEnter * RemoveConflictingAlignMaps
 " Custom configuration
 
 set hidden
-filetype off          " necessary to make ftdetect work on Linux
-syntax on
-filetype on           " Enable filetype detection
-filetype indent on    " Enable filetype-specific indenting
-filetype plugin on    " Enable filetype-specific plugins
-set scrolloff=0       " show context above/below cursorline
 
 " auto reload vimrc when editing it
 autocmd! bufwritepost .vimrc.local source $HOME/.vimrc.local
 
 " TAB setting{
    set expandtab        "replace <TAB> with spaces
-   set tabstop=4
-   set softtabstop=4
-   set shiftwidth=4
 
    au FileType Makefile set noexpandtab
+   autocmd FileType php set tabstop=4
+   autocmd FileType php set softtabstop=4
+   autocmd FileType php set shiftwidth=4
 "}
 
 " allow multiple indentation/deindentation in visual mode
 vnoremap < <gv
 vnoremap > >gv
 
+" Make it obvious where 80 characters is
+set textwidth=80
+set colorcolumn=+1
+
+" ignore git/hg/svn directory for ctrlp
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
