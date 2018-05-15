@@ -1,4 +1,5 @@
 Plugin 'elixir-lang/vim-elixir'
+Plugin 'idris-hackers/idris-vim'
 Plugin 'lambdatoast/elm.vim'
 Plugin 'vim-scripts/autoclose'
 Plugin 'sukima/xmledit'
