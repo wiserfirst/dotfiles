@@ -34,6 +34,9 @@ fi
 alias vi=vim
 alias g=git
 
+alias ism='iex -S mix'
+alias isp='iex -S mix phx.server'
+
 alias -s html=vi   # 在命令行直接输入后缀为 html 的文件名，会在 vi 中打开
 alias -s phtml=vi
 alias -s php=vi

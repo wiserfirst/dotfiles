@@ -25,12 +25,12 @@ configs = {
   'alias.co'     => 'checkout',
   'alias.ci'     => 'commit',
   'alias.brv'    => 'branch -v',
+  'alias.cb'     => '"rev-parse --symbolic-full-name --abbrev-ref HEAD"',
+  'alias.gp'     => '"!git push --set-upstream origin HEAD:$(git cb)"',
+  'alias.gup'    => '"!git fetch --prune origin && git rebase -p origin/$(git cb)"',
   'core.editor'  => 'vim',
-  'push.default' => 'simple',
+  'push.default' => 'upstream',
   'core.autocrlf' => 'input',
-  'cb' => 'rev-parse --symbolic-full-name --abbrev-ref HEAD',
-  'gp' =>'!git push --set-upstream origin HEAD:$(git cb)',
-  'gup' => '!git fetch --prune origin && git rebase -p origin/$(git cb)'
 }
 configs.each do |key, value|
   system "git config --global #{key} #{value}"
