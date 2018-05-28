@@ -60,3 +60,6 @@ export LC_ALL=en_US.UTF-8
 . $HOME/.asdf/asdf.sh
 
 . $HOME/.asdf/completions/asdf.bash
+
+# Erlang/Elixir command history
+export ERL_AFLAGS="-kernel shell_history enabled"
