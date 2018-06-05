@@ -63,3 +63,5 @@ export LC_ALL=en_US.UTF-8
 
 # Erlang/Elixir command history
 export ERL_AFLAGS="-kernel shell_history enabled"
+
+eval "$(direnv hook zsh)"
