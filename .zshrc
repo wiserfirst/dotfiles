@@ -65,3 +65,11 @@ export LC_ALL=en_US.UTF-8
 export ERL_AFLAGS="-kernel shell_history enabled"
 
 eval "$(direnv hook zsh)"
+export GIT_COMPLETION_CHECKOUT_NO_GUESS=1
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export GOPATH="$HOME/.asdf/installs/golang/$(asdf current golang | cut -d' ' -f1)/packages"
+export PATH="$PATH:$GOPATH/bin"
