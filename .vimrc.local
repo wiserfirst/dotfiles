@@ -5,7 +5,8 @@ inoremap jj <ESC>
 
 " highlight search
 set hlsearch
-nmap <leader>hl :let @/ = ""<CR>
+nmap <leader>cs :let @/ = ""<CR>
+nmap <Esc> <Esc>:nohlsearch<CR>
 
 " count match of last search pattern
 nnoremap <leader>n :%s///gn<CR>
@@ -45,7 +46,11 @@ silent! autocmd VimEnter * RemoveConflictingAlignMaps
 set hidden
 
 " auto reload vimrc when editing it
-autocmd! bufwritepost .vimrc.local source $HOME/.vimrc.local
+autocmd! bufwritepost .vimrc source ~/.vimrc
+autocmd! bufwritepost .vimrc.local source ~/.vimrc.local
+" for edit/source vimrc
+map <leader>re :execute "edit " . $MYVIMRC<CR>
+map <leader>rs :execute "source " . $MYVIMRC<CR>
 
 " TAB setting{
    set expandtab        "replace <TAB> with spaces
@@ -77,3 +82,38 @@ let g:alchemist_compile_basepath = "/usr/src/expert360com/main/backend"
 
 " make test commands execute using iterm
 let test#strategy = "iterm"
+
+" Help File speedups, <enter> to follow tag, delete for back
+au filetype help nnoremap <buffer><cr> <c-]>
+au filetype help nnoremap <buffer><bs> <c-T>
+au filetype help nnoremap <buffer>q :q<CR>
+au filetype help set nonumber
+set splitbelow " Split windows, ie Help, make more sense to me below
+au filetype help wincmd _ " Maximze the help on open
+
+" Switch between the last two files
+nnoremap <leader><leader> <c-^>
+
+" show hidden files in NERDTree (capital I to toggle)
+let NERDTreeShowHidden=1
+
+" Use one space, not two, after punctuation.
+set nojoinspaces
+
+" Display relative line numbers, with absolute line number for current line
+set number
+set numberwidth=5
+set relativenumber
+
+" When the type of shell script is /bin/sh, assume a POSIX-compatible
+" shell for syntax highlighting purposes.
+let g:is_posix = 1
+
+let g:fzf_mru_relative = 1
+
+let g:fzf_files_options =
+  \ '--reverse ' .
+  \ '--preview "(coderay {} || cat {}) 2> /dev/null | head -'.&lines.'"'
+nnoremap <C-p> :Files<cr>
+
+" vim:ft=vim

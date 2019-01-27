@@ -7,3 +7,6 @@ Plugin 'tpope/vim-rhubarb'
 Plugin 'mhinz/vim-mix-format'
 Plugin 'slashmili/alchemist.vim'
 Plugin 'janko-m/vim-test'
+Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plugin 'junegunn/fzf.vim'
+Plugin 'pbogut/fzf-mru.vim'

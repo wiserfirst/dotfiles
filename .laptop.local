@@ -2,23 +2,25 @@
 
 brew_tap 'caskroom/cask'
 brew_install_or_upgrade 'brew-cask'
+brew_install_or_upgrade 'fd'
+brew_install_or_upgrade 'jq'
+brew_install_or_upgrade 'ripgrep'
+brew_install_or_upgrade 'the_silver_searcher'
+brew_install_or_upgrade 'tldr'
+brew_install_or_upgrade 'tree'
+brew_install_or_upgrade 'watch'
 
 brew cask install dropbox
 brew cask install evernote
 brew cask install filezilla
 brew cask install firefox
 brew cask install google-chrome
-brew cask install libreoffice
 brew cask install iterm2
 brew cask install macvim
-brew cask install qq
 brew cask install sequel-pro
 brew cask install sourcetree
-brew cask install sublime-text
+brew cask install vscode
 brew cask install vagrant
 brew cask install virtualbox
 
 gem_install_or_update 'parity'
-
-brew_install_or_upgrade 'tree'
-brew_install_or_upgrade 'watch'
