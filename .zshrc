@@ -73,3 +73,6 @@ export NVM_DIR="$HOME/.nvm"
 
 export GOPATH="$HOME/.asdf/installs/golang/$(asdf current golang | cut -d' ' -f1)/packages"
 export PATH="$PATH:$GOPATH/bin"
+export PATH="/usr/local/opt/unzip/bin:$PATH"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
