@@ -73,4 +73,7 @@ let g:mix_format_silent_errors = 1
 " for Elixir and OTP source
 let g:alchemist#elixir_erlang_src = "$HOME/work/open-source"
 " Docker compile directory
-let g:alchemist_compile_basepath = "/usr/src"
+let g:alchemist_compile_basepath = "/usr/src/expert360com/main/backend"
+
+" make test commands execute using iterm
+let test#strategy = "iterm"
