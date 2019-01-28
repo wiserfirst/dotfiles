@@ -108,9 +108,6 @@ let g:is_posix = 1
 
 let g:fzf_mru_relative = 1
 
-let g:fzf_files_options =
-  \ '--reverse ' .
-  \ '--preview "(coderay {} || cat {}) 2> /dev/null | head -'.&lines.'"'
-nnoremap <C-p> :Files<cr>
+let g:fzf_files_options = '--reverse --preview "head -'.&lines.' {}"'
 
 " vim:ft=vim
