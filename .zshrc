@@ -22,8 +22,10 @@ set -o vi
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
+  alias v=vim
 else
   export EDITOR='mvim'
+  alias v=mvim
 fi
 
 personal_config=$HOME"/.zsh_personal"

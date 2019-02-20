@@ -6,7 +6,6 @@ inoremap jj <ESC>
 " highlight search
 set hlsearch
 nmap <leader>cs :let @/ = ""<CR>
-nmap <Esc> <Esc>:nohlsearch<CR>
 
 " count match of last search pattern
 nnoremap <leader>n :%s///gn<CR>
@@ -110,4 +109,3 @@ let g:fzf_mru_relative = 1
 
 let g:fzf_files_options = '--reverse --preview "head -'.&lines.' {}"'
 
-" vim:ft=vim
