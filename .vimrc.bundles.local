@@ -1,10 +1,4 @@
-Plugin 'elixir-lang/vim-elixir'
-Plugin 'idris-hackers/idris-vim'
-Plugin 'lambdatoast/elm.vim'
 Plugin 'vim-scripts/autoclose'
-Plugin 'sukima/xmledit'
-Plugin 'tpope/vim-rhubarb'
-Plugin 'mhinz/vim-mix-format'
 Plugin 'slashmili/alchemist.vim'
 Plugin 'janko-m/vim-test'
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
