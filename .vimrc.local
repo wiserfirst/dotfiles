@@ -13,7 +13,7 @@ nnoremap <leader>n :%s///gn<CR>
 " gui settings
 if (&t_Co == 256 || has('gui_running'))
   set background=dark
-  set guifont=Monaco:h14
+  set guifont=Monaco:h10
   set lines=999 columns=999
   set guioptions-=r  "remove right-hand scroll bar
   set guioptions-=L  "remove left-hand scroll bar
@@ -68,9 +68,6 @@ vnoremap > >gv
 set textwidth=80
 set colorcolumn=+1
 
-let g:mix_format_on_save = 1
-let g:mix_format_silent_errors = 1
-
 " for Elixir and OTP source
 let g:alchemist#elixir_erlang_src = "$HOME/work/open-source"
 
@@ -107,5 +104,41 @@ let g:fzf_mru_relative = 1
 
 let g:fzf_files_options = '--reverse --preview "head -'.&lines.' {}"'
 
+let g:ale_linters = {
+\   'elixir': ['elixir-ls'],
+\   'javascript': ['eslint'],
+\}
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'elixir': ['mix_format'],
+\   'javascript': ['eslint', 'prettier'],
+\}
+
+let g:ale_elixir_elixir_ls_release='~/work/open-source/elixir-ls/release'
+let g:ale_completion_enabled = 1
+let g:ale_sign_error = '✘'
+let g:ale_sign_warning = '⚠'
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_text_changed = 'never'
+highlight ALEErrorSign ctermbg=NONE ctermfg=red
+highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
+let g:ale_linters_explicit = 1
+let g:ale_lint_on_save = 1
+let g:ale_fix_on_save = 1
+noremap <Leader>ad :ALEGoToDefinition<CR>
+nnoremap <leader>af :ALEFix<cr>
+noremap <Leader>ar :ALEFindReferences<CR>
+"Move between linting errors
+nnoremap ]r :ALENextWrap<CR>
+nnoremap [r :ALEPreviousWrap<CR>
+
 nnoremap <leader>k :Ack! '\b<c-r>=expand("<cWORD>")<cr>\b'<CR>
-nnoremap <leader>j :cdo! s/Services.\(.\{-}\)\.\(.\{-}\).Schema\>\(, as: .*\)\?/Services.\1.Schema.\2/<CR>
+nnoremap <leader>sa vip:sort<CR>:w<CR>
+
+let g:user_emmet_install_global = 0
+autocmd FileType html,css,javascript,jsx,typescript.tsx EmmetInstall
+let g:user_emmet_settings = {
+\  'javascript' : {
+\      'extends' : 'jsx',
+\  },
+\}
