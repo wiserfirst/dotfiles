@@ -4,3 +4,4 @@ Plugin 'janko-m/vim-test'
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plugin 'junegunn/fzf.vim'
 Plugin 'pbogut/fzf-mru.vim'
+Plugin 'elmcast/elm-vim'

@@ -64,6 +64,9 @@ map <leader>rs :execute "source " . $MYVIMRC<CR>
 vnoremap < <gv
 vnoremap > >gv
 
+nnoremap j gj
+nnoremap k gk
+
 " Make it obvious where 80 characters is
 set textwidth=80
 set colorcolumn=+1
@@ -111,7 +114,7 @@ let g:ale_linters = {
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'elixir': ['mix_format'],
-\   'javascript': ['eslint', 'prettier'],
+\   'javascript': ['eslint'],
 \}
 
 let g:ale_elixir_elixir_ls_release='~/work/open-source/elixir-ls/release'
@@ -142,3 +145,5 @@ let g:user_emmet_settings = {
 \      'extends' : 'jsx',
 \  },
 \}
+
+let g:elm_format_autosave = 1
