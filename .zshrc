@@ -28,11 +28,6 @@ else
   alias v=mvim
 fi
 
-personal_config=$HOME"/.zsh_personal"
-if [ -f $personal_config ]; then
-    source $personal_config
-fi
-
 alias vi=vim
 alias g=git
 
@@ -74,19 +69,14 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-export GOPATH="$HOME/.asdf/installs/golang/$(asdf current golang | cut -d' ' -f1)/packages"
-export PATH="$PATH:$GOPATH/bin"
-export PATH="/usr/local/opt/unzip/bin:$PATH"
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # Setting fd as the default source for fzf
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 # To apply the command to CTRL-T as well
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-precmd() {
-  # sets the tab title to current dir
-  echo -ne "\e]1;${PWD##*/}\a"
-}
+# precmd() {
+#   # sets the tab title to current dir
+#   echo -ne "\e]1;${PWD##*/}\a"
+# }
