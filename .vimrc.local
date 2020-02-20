@@ -13,7 +13,7 @@ nnoremap <leader>n :%s///gn<CR>
 " gui settings
 if (&t_Co == 256 || has('gui_running'))
   set background=dark
-  set guifont=Monaco:h10
+  set guifont=Monaco:h12
   set lines=999 columns=999
   set guioptions-=r  "remove right-hand scroll bar
   set guioptions-=L  "remove left-hand scroll bar
@@ -115,6 +115,7 @@ let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'elixir': ['mix_format'],
 \   'javascript': ['eslint'],
+\   'rust': ['rustfmt'],
 \}
 
 let g:ale_elixir_elixir_ls_release='~/work/open-source/elixir-ls/release'
