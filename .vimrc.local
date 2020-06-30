@@ -13,7 +13,7 @@ nnoremap <leader>n :%s///gn<CR>
 " gui settings
 if (&t_Co == 256 || has('gui_running'))
   set background=dark
-  set guifont=Monaco:h12
+  set guifont=Monaco:h10
   set lines=999 columns=999
   set guioptions-=r  "remove right-hand scroll bar
   set guioptions-=L  "remove left-hand scroll bar
@@ -110,15 +110,24 @@ let g:fzf_files_options = '--reverse --preview "head -'.&lines.' {}"'
 let g:ale_linters = {
 \   'elixir': ['elixir-ls'],
 \   'javascript': ['eslint'],
+\   'typescript': ['eslint'],
 \}
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'elixir': ['mix_format'],
-\   'javascript': ['eslint'],
+\   'javascript': ['prettier'],
+\   'typescript': ['prettier'],
+\   'javascriptreact': ['prettier'],
+\   'typescriptreact': ['prettier'],
+\   'css': ['prettier'],
+\   'scss': ['prettier'],
+\   'less': ['prettier'],
+\   'json': ['prettier'],
+\   'graphql': ['prettier'],
 \   'rust': ['rustfmt'],
 \}
 
-let g:ale_elixir_elixir_ls_release='~/work/open-source/elixir-ls/release'
+" let g:ale_elixir_elixir_ls_release='~/work/open-source/elixir-ls/release'
 let g:ale_completion_enabled = 1
 let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '⚠'
@@ -129,6 +138,9 @@ highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
 let g:ale_linters_explicit = 1
 let g:ale_lint_on_save = 1
 let g:ale_fix_on_save = 1
+let g:ale_javascript_prettier_options = '--no-semi --trailing-comma es5 --arrow-parens avoid'
+let g:ale_typescript_prettier_options = '--no-semi --trailing-comma es5 --arrow-parens avoid'
+
 noremap <Leader>ad :ALEGoToDefinition<CR>
 nnoremap <leader>af :ALEFix<cr>
 noremap <Leader>ar :ALEFindReferences<CR>
