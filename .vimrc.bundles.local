@@ -1,7 +1,7 @@
-Plugin 'vim-scripts/autoclose'
-Plugin 'slashmili/alchemist.vim'
-Plugin 'janko-m/vim-test'
-Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plugin 'junegunn/fzf.vim'
-Plugin 'pbogut/fzf-mru.vim'
-Plugin 'elmcast/elm-vim'
+Plug 'vim-scripts/autoclose'
+Plug 'slashmili/alchemist.vim'
+Plug 'janko-m/vim-test'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'pbogut/fzf-mru.vim'
+Plug 'elmcast/elm-vim'
