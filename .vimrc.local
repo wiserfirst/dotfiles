@@ -13,7 +13,7 @@ nnoremap <leader>n :%s///gn<CR>
 " gui settings
 if (&t_Co == 256 || has('gui_running'))
   set background=dark
-  set guifont=Monaco:h10
+  set guifont=Monaco:h12
   set lines=999 columns=999
   set guioptions-=r  "remove right-hand scroll bar
   set guioptions-=L  "remove left-hand scroll bar
@@ -107,56 +107,88 @@ let g:fzf_mru_relative = 1
 
 let g:fzf_files_options = '--reverse --preview "head -'.&lines.' {}"'
 
-let g:ale_linters = {
-\   'elixir': ['elixir-ls'],
-\   'javascript': ['eslint'],
-\   'typescript': ['eslint'],
-\}
-let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'elixir': ['mix_format'],
-\   'javascript': ['prettier'],
-\   'typescript': ['prettier'],
-\   'javascriptreact': ['prettier'],
-\   'typescriptreact': ['prettier'],
-\   'css': ['prettier'],
-\   'scss': ['prettier'],
-\   'less': ['prettier'],
-\   'json': ['prettier'],
-\   'graphql': ['prettier'],
-\   'rust': ['rustfmt'],
-\}
-
-" let g:ale_elixir_elixir_ls_release='~/work/open-source/elixir-ls/release'
-let g:ale_completion_enabled = 1
-let g:ale_sign_error = '✘'
-let g:ale_sign_warning = '⚠'
-let g:ale_lint_on_enter = 0
-let g:ale_lint_on_text_changed = 'never'
-highlight ALEErrorSign ctermbg=NONE ctermfg=red
-highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
-let g:ale_linters_explicit = 1
-let g:ale_lint_on_save = 1
-let g:ale_fix_on_save = 1
-let g:ale_javascript_prettier_options = '--no-semi --trailing-comma es5 --arrow-parens avoid'
-let g:ale_typescript_prettier_options = '--no-semi --trailing-comma es5 --arrow-parens avoid'
-
-noremap <Leader>ad :ALEGoToDefinition<CR>
-nnoremap <leader>af :ALEFix<cr>
-noremap <Leader>ar :ALEFindReferences<CR>
-"Move between linting errors
-nnoremap ]r :ALENextWrap<CR>
-nnoremap [r :ALEPreviousWrap<CR>
-
 nnoremap <leader>k :Ack! '\b<c-r>=expand("<cWORD>")<cr>\b'<CR>
 nnoremap <leader>sa vip:sort<CR>:w<CR>
 
 let g:user_emmet_install_global = 0
-autocmd FileType html,css,javascript,jsx,typescript.tsx EmmetInstall
+autocmd FileType html,css,javascript.jsx,typescript.tsx EmmetInstall
 let g:user_emmet_settings = {
-\  'javascript' : {
+\  'javascript.jsx' : {
 \      'extends' : 'jsx',
 \  },
 \}
 
 let g:elm_format_autosave = 1
+let g:mix_format_on_save = 1
+
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+if has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
+
+" force vim to rescan the entire buffer when highlighting for
+" javascript/typescript files
+autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
+
+let g:coc_global_extensions = [
+  \ 'coc-tsserver',
+  \ 'coc-solargraph'
+  \ ]
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
+  let g:coc_global_extensions += ['coc-prettier']
+endif
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
+  let g:coc_global_extensions += ['coc-eslint']
+endif
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+" autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+nmap <leader>do <Plug>(coc-codeaction)
+
+" Allow tab to traverse options in auto-complete window, refresh on backspace
+" inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? "\<C-n>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ coc#refresh()
+" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" inoremap <expr><cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" SnipMate provides two versions for its snippet parser. Version 0 is the legacy
+" regex based version and is updated sparingly. Version 1 is the revamped
+" version with new features.
+" Setting g:snipMate.snippet_version to either 0 or 1 will remove the start up
+" message.
+let g:snipMate = { 'snippet_version' : 1 }
+

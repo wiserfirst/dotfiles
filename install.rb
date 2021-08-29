@@ -16,24 +16,4 @@ Dir['.*'].each do |f|
   end
 end
 
-# config git
-puts '============= Config Git ==========='
-configs = {
-  'alias.st'     => 'status',
-  'alias.br'     => 'branch',
-  'alias.rb'     => 'rebase',
-  'alias.co'     => 'checkout',
-  'alias.ci'     => 'commit',
-  'alias.brv'    => 'branch -v',
-  'alias.cb'     => '"rev-parse --symbolic-full-name --abbrev-ref HEAD"',
-  'alias.gp'     => "'!git push --set-upstream origin HEAD:$(git cb)'",
-  'alias.gup'    => "'!git fetch --prune origin && git rebase -p origin/$(git cb)'",
-  'core.editor'  => 'vim',
-  'push.default' => 'upstream',
-  'core.autocrlf' => 'input',
-}
-configs.each do |key, value|
-  system "git config --global #{key} #{value}"
-end
-
 puts '============= DONE ============'

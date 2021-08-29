@@ -33,6 +33,7 @@ alias g=git
 
 alias ism='iex -S mix'
 alias isp='iex -S mix phx.server'
+alias be='bundle exec'
 
 alias -s html=vi   # 在命令行直接输入后缀为 html 的文件名，会在 vi 中打开
 alias -s phtml=vi
@@ -56,8 +57,13 @@ export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
 . $HOME/.asdf/asdf.sh
+# append completions to fpath
+fpath=(${ASDF_DIR}/completions $fpath)
+# initialise completions with ZSH's compinit
+autoload -Uz compinit
+compinit
 
-. $HOME/.asdf/completions/asdf.bash
+[ -d $HOME/.asdf/plugins/java/ ] && . $HOME/.asdf/plugins/java/set-java-home.zsh
 
 # Erlang/Elixir command history
 export ERL_AFLAGS="-kernel shell_history enabled"
@@ -65,11 +71,13 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 eval "$(direnv hook zsh)"
 export GIT_COMPLETION_CHECKOUT_NO_GUESS=1
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+if [[ -d /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/ ]]; then
+  source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
+  source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
+fi
+
 # Setting fd as the default source for fzf
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 # To apply the command to CTRL-T as well

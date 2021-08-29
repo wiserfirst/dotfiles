@@ -5,3 +5,6 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'pbogut/fzf-mru.vim'
 Plug 'elmcast/elm-vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'mhinz/vim-mix-format'

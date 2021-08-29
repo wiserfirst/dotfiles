@@ -1,0 +1,29 @@
+[alias]
+	st = status
+	br = branch
+	rb = rebase
+	co = checkout
+	ci = commit
+	brv = branch
+	cb = rev-parse --symbolic-full-name --abbrev-ref HEAD
+	gp = !git push --set-upstream origin HEAD:$(git cb)
+	gup = !git fetch --prune origin && git rebase -p origin/$(git cb)
+[core]
+	editor = vim
+	autocrlf = input
+	excludesfile = /Users/wiser/.gitignore_global
+[push]
+	default = upstream
+[user]
+	name = Qing Wu
+	email = wiserfirst@gmail.com
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[commit]
+	template = /Users/wiser/.stCommitMsg
+[pull]
+	rebase = true
