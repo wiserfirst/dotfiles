@@ -13,7 +13,7 @@ nnoremap <leader>n :%s///gn<CR>
 " gui settings
 if (&t_Co == 256 || has('gui_running'))
   set background=dark
-  set guifont=Monaco:h12
+  set guifont=Monaco:h14
   set lines=999 columns=999
   set guioptions-=r  "remove right-hand scroll bar
   set guioptions-=L  "remove left-hand scroll bar
@@ -72,7 +72,7 @@ set textwidth=80
 set colorcolumn=+1
 
 " for Elixir and OTP source
-let g:alchemist#elixir_erlang_src = "$HOME/work/open-source"
+let g:alchemist#elixir_erlang_src = "$HOME/opensource"
 
 " make test commands execute using iterm
 let test#strategy = "iterm"
@@ -120,6 +120,7 @@ let g:user_emmet_settings = {
 
 let g:elm_format_autosave = 1
 let g:mix_format_on_save = 1
+let g:mix_format_silent_errors = 1
 
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
