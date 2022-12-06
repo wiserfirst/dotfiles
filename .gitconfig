@@ -11,7 +11,7 @@
 [core]
 	editor = vim
 	autocrlf = input
-	excludesfile = /Users/wiser/.gitignore_global
+	excludesfile = /Users/qingwu/.gitignore_global
 [push]
 	default = upstream
 [user]
@@ -23,7 +23,9 @@
 [mergetool "sourcetree"]
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
-[commit]
-	template = /Users/wiser/.stCommitMsg
 [pull]
 	rebase = true
+[init]
+	defaultBranch = main
+[commit]
+	template = /Users/qingwu/.stCommitMsg
