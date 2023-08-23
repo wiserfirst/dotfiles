@@ -8,3 +8,5 @@ Plug 'elmcast/elm-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'mhinz/vim-mix-format'
+Plug 'github/copilot.vim'
+Plug 'leafgarland/typescript-vim'
