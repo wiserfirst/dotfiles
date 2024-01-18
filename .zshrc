@@ -91,7 +91,7 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 #   echo -ne "\e]1;${PWD##*/}\a"
 # }
 
-export PATH="$PATH:$HOME/bin"
+export PATH="$PATH:$(yarn global bin):$HOME/bin"
 # section for zplug
 if [[ ! -d ~/.zplug ]];then
   git clone https://github.com/b4b4r07/zplug ~/.zplug
