@@ -110,17 +110,18 @@ let g:fzf_files_options = '--reverse --preview "head -'.&lines.' {}"'
 nnoremap <leader>k :Ack! '\b<c-r>=expand("<cWORD>")<cr>\b'<CR>
 nnoremap <leader>sa vip:sort<CR>:w<CR>
 
-let g:user_emmet_install_global = 0
-autocmd FileType html,css,javascript.jsx,typescript.tsx EmmetInstall
-let g:user_emmet_settings = {
-\  'javascript.jsx' : {
-\      'extends' : 'jsx',
-\  },
-\}
+" let g:user_emmet_install_global = 0
+" autocmd FileType html,css,javascript.jsx,typescript.tsx EmmetInstall
+" let g:user_emmet_settings = {
+" \  'javascript.jsx' : {
+" \      'extends' : 'jsx',
+" \  },
+" \}
 
-let g:elm_format_autosave = 1
+" let g:elm_format_autosave = 1
 let g:mix_format_on_save = 1
 let g:mix_format_silent_errors = 1
+let g:mix_format_options = ""
 
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
@@ -137,22 +138,19 @@ endif
 
 " force vim to rescan the entire buffer when highlighting for
 " javascript/typescript files
-autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+" autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
 " autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 
-let g:coc_global_extensions = [
-  \ 'coc-tsserver',
-  \ 'coc-solargraph'
-  \ ]
+let g:coc_global_extensions = ['coc-tsserver']
 
 if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
   let g:coc_global_extensions += ['coc-prettier']
 endif
 
-if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
-  let g:coc_global_extensions += ['coc-eslint']
-  autocmd BufWritePre *.{js,jsx,ts,tsx} call CocAction('runCommand', 'eslint.executeAutofix')
-endif
+" if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
+"   let g:coc_global_extensions += ['coc-eslint']
+"   autocmd BufWritePre *.{js,jsx,ts,tsx} call CocAction('runCommand', 'eslint.executeAutofix')
+" endif
 
 
 " GoTo code navigation.

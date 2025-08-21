@@ -56,29 +56,23 @@ setopt interactivecomments
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-# append completions to fpath
-fpath=(${ASDF_DIR}/completions $fpath)
 # initialise completions with ZSH's compinit
 autoload -Uz compinit
 compinit
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-[ -d $HOME/.asdf/ ] && . $HOME/.asdf/asdf.sh
-# [ -d $HOME/.asdf/plugins/java/ ] && . $HOME/.asdf/plugins/java/set-java-home.zsh
+# append completions to fpath
+fpath=(${ASDF_DIR}/completions $fpath)
 
 # Erlang/Elixir command history
 export ERL_AFLAGS="-kernel shell_history enabled"
+export KERL_CONFIGURE_OPTIONS="--disable-debug --disable-silent-rules --without-javac --enable-shared-zlib --enable-dynamic-ssl-lib --enable-threads --enable-kernel-poll --enable-darwin-64bit --enable-gettimeofday-as-os-system-time --with-ssl=/opt/homebrew/opt/openssl@3 --without-wx"
 
 eval "$(direnv hook zsh)"
 export GIT_COMPLETION_CHECKOUT_NO_GUESS=1
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# if [[ -d /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/ ]]; then
-#   source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
-#   source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
-# fi
 
 # Setting fd as the default source for fzf
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
@@ -86,22 +80,70 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-# precmd() {
-#   # sets the tab title to current dir
-#   echo -ne "\e]1;${PWD##*/}\a"
-# }
 
-export PATH="$PATH:$(yarn global bin):$HOME/bin"
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH:$(yarn global bin):$HOME/bin"
 # section for zplug
-if [[ ! -d ~/.zplug ]];then
-  git clone https://github.com/b4b4r07/zplug ~/.zplug
-fi
+# if [[ ! -d ~/.zplug ]];then
+#   git clone https://github.com/b4b4r07/zplug ~/.zplug
+# fi
 
-source ~/.zplug/init.zsh
+# source ~/.zplug/init.zsh
 
-zplug "kevinywlui/zlong_alert.zsh"
+# zplug "kevinywlui/zlong_alert.zsh"
 
-if ! zplug check; then
-  zplug install
-fi
-zplug load
+# if ! zplug check; then
+#   zplug install
+# fi
+# zplug load
+test -e $HOME/.iterm2_shell_integration.zsh && source $HOME/.iterm2_shell_integration.zsh || true
+
+# Created by `pipx` on 2024-06-18 12:32:52
+export PATH="$PATH:$HOME/.local/bin"
+
+# Windsurf and LM Studio CLI (lms)
+export PATH="$HOME/.codeium/windsurf/bin:$PATH:$HOME/.cache/lm-studio/bin"
+
+# BEGIN opam configuration
+# This is useful if you're using opam as it adds:
+#   - the correct directories to the PATH
+#   - auto-completion for the opam binary
+# This section can be safely removed at any time if needed.
+[[ ! -r '$HOME/.opam/opam-init/init.zsh' ]] || source '$HOME/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
+# END opam configuration
+
+# Terminal title management functions
+terminal_titles() {
+    case "$1" in
+        window)
+            echo -ne "\033]2;$2\007"
+            ;;
+        tab)
+            echo -ne "\033]1;$2\007"
+            ;;
+        both)
+            echo -ne "\033]0;$2\007"
+            ;;
+        help)
+            echo "Usage: terminal_titles [window|tab|both|reset|help] [title]"
+            echo "  window [title] - Set window title only"
+            echo "  tab [title]    - Set tab title only"
+            echo "  both [title]   - Set both window and tab to same title"
+            echo "  [title]        - Same as both [title]"
+            echo "  reset          - Reset to default titles"
+            echo "  help           - Show this help message"
+            echo "  (no args)      - Same as reset"
+            ;;
+        reset|"")
+            # Window title: full path with ~ for home
+            echo -ne "\033]2;${PWD/#$HOME/~}\007"
+            # Tab title: last portion of the full path
+            echo -ne "\033]1;${PWD##*/}\007"
+            ;;
+        *)
+            echo -ne "\033]0;$1\007"
+            ;;
+    esac
+}
+
+alias tt='terminal_titles'
+
