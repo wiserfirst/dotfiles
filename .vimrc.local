@@ -17,11 +17,7 @@ if (&t_Co == 256 || has('gui_running'))
   set lines=999 columns=999
   set guioptions-=r  "remove right-hand scroll bar
   set guioptions-=L  "remove left-hand scroll bar
-  if ($TERM_PROGRAM == 'iTerm.app')
-    colorscheme solarized
-  else
-    colorscheme elflord
-  endif
+  colorscheme solarized
 endif
 
 " Disambiguate ,a & ,t from the Align plugin, making them fast again.

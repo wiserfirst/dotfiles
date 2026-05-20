@@ -22,14 +22,17 @@ set -o vi
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
+  export VISUAL='vim'
   alias v=vim
 else
   export EDITOR='mvim'
+  export VISUAL='mvim'
   alias v=mvim
 fi
 
 alias vi=vim
 alias g=git
+alias sync-claude-plugin-skills='~/.pi/agent/scripts/sync-claude-plugin-skills.sh'
 
 alias ism='iex -S mix'
 alias isp='iex -S mix phx.server'
@@ -103,6 +106,12 @@ export PATH="$PATH:$HOME/.local/bin"
 # Windsurf and LM Studio CLI (lms)
 export PATH="$HOME/.codeium/windsurf/bin:$PATH:$HOME/.cache/lm-studio/bin"
 
+# add -F to exit immediately if output fits on one screen
+export LESS="-F $LESS"
+
+# Do not use a pager for AWS cli
+export AWS_PAGER=""
+
 # BEGIN opam configuration
 # This is useful if you're using opam as it adds:
 #   - the correct directories to the PATH
@@ -147,3 +156,15 @@ terminal_titles() {
 
 alias tt='terminal_titles'
 
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/qingwu/.lmstudio/bin"
+# End of LM Studio CLI section
+
+
+# bun completions
+[ -s "/Users/qingwu/.bun/_bun" ] && source "/Users/qingwu/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
