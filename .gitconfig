@@ -7,7 +7,10 @@
 	brv = branch
 	cb = rev-parse --symbolic-full-name --abbrev-ref HEAD
 	gp = !git push --set-upstream origin HEAD:$(git cb)
-	gup = !git fetch --prune origin && git rebase -p origin/$(git cb)
+	gup = !git fetch --prune origin && git rebase --autostash origin/$(git cb)
+	bd = "!f() { git branch | fzf --query=\"$1\" --select-1 --exit-0 | xargs -r git branch -D; }; f"
+	col = "!f() { git branch | fzf --query=\"$1\" --select-1 --exit-0 | sed 's/^[* ] //' | xargs -r git checkout; }; f"
+	cor = "!f() { git branch --remotes | grep -v HEAD | sed 's|^[ ]*origin/||' | fzf --query=\"$1\" --select-1 --exit-0 | xargs -r git checkout; }; f"
 [core]
 	editor = vim
 	autocrlf = input
@@ -25,7 +28,16 @@
 	trustExitCode = true
 [pull]
 	rebase = true
+[rebase]
+	autoStash = true
 [init]
 	defaultBranch = main
 [commit]
 	template = /Users/qingwu/.stCommitMsg
+[fetch]
+	prune = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
