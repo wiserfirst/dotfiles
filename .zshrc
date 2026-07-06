@@ -82,8 +82,6 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 # To apply the command to CTRL-T as well
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-# export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH:$(yarn global bin):$HOME/bin"
 # section for zplug
 # if [[ ! -d ~/.zplug ]];then
@@ -103,8 +101,8 @@ test -e $HOME/.iterm2_shell_integration.zsh && source $HOME/.iterm2_shell_integr
 # Created by `pipx` on 2024-06-18 12:32:52
 export PATH="$PATH:$HOME/.local/bin"
 
-# Windsurf and LM Studio CLI (lms)
-export PATH="$HOME/.codeium/windsurf/bin:$PATH:$HOME/.cache/lm-studio/bin"
+# GNU tools and LM Studio CLI (lms)
+export PATH="$(brew --prefix gnu-sed)/libexec/gnubin:$PATH:$HOME/.cache/lm-studio/bin"
 
 # add -F to exit immediately if output fits on one screen
 export LESS="-F $LESS"
