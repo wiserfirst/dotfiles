@@ -1,0 +1,7 @@
+# vim-plug installs plugins here; regenerated on first launch
+bundle/
+# plug.vim is bootstrapped by ~/.vimrc via curl
+autoload/
+# per-file view state (folds, cursor) — machine-local
+view/
+.netrwhist

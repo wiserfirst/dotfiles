@@ -22,8 +22,6 @@ brew "cloc"
 brew "colima"
 # GNU File, Shell, and Text utilities
 brew "coreutils"
-# Reimplementation of ctags(1)
-brew "ctags"
 # Get a file from an HTTP, HTTPS or FTP server
 brew "curl", link: true
 # Load/unload environment variables based on $PWD
@@ -126,8 +124,6 @@ brew "supabase"
 brew "swiftformat"
 # Tool to build, change, and version infrastructure
 brew "terraform"
-# Code-search similar to ack
-brew "the_silver_searcher"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
 # Extraction utility for .zip compressed archives

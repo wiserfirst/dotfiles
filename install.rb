@@ -3,6 +3,7 @@
 require 'fileutils'
 
 MAPPINGS = {
+  'vim'                      => '~/.vim',
   'hammerspoon'              => '~/.hammerspoon',
   'config/herdr/config.toml' => '~/.config/herdr/config.toml',
   'bin/herdr-sessionizer'    => '~/.local/bin/herdr-sessionizer',
