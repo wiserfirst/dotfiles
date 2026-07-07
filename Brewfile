@@ -12,8 +12,6 @@ brew "asdf"
 brew "autoconf"
 # Official Amazon AWS command-line interface
 brew "awscli"
-# Decentralized dependency manager for Cocoa
-brew "carthage"
 # Enables you to reproduce the CircleCI environment locally
 brew "circleci"
 # Formatting tools for C, C++, Obj-C, Java, JavaScript, TypeScript
@@ -108,8 +106,6 @@ brew "postgis"
 brew "postgresql@18", restart_service: :changed, link: true
 # Easily download, build, install, upgrade, and uninstall Python packages
 brew "python-setuptools"
-# Reattach process (e.g., tmux) to background
-brew "reattach-to-user-namespace"
 # Persistent key-value database, with built-in net interface
 brew "redis", restart_service: :changed
 # Search tool like grep and The Silver Searcher
@@ -128,16 +124,10 @@ brew "ssh-copy-id"
 brew "supabase"
 # Formatting tool for reformatting Swift code
 brew "swiftformat"
-# User interface to the TELNET protocol
-brew "telnet"
 # Tool to build, change, and version infrastructure
 brew "terraform"
 # Code-search similar to ack
 brew "the_silver_searcher"
-# Simplified and community-driven man pages
-brew "tldr"
-# Terminal multiplexer
-brew "tmux"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
 # Extraction utility for .zip compressed archives
