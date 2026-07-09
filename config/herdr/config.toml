@@ -1,3 +1,4 @@
+onboarding = false
 # herdr keybindings — Meh (ctrl+alt+shift) layer for workspace/tab navigation.
 # Each action also carries a ctrl+alt fallback in case the terminal
 # collapses the shift bit before it reaches the TUI.
@@ -18,3 +19,7 @@ switch_workspace   = ["ctrl+alt+shift+1..9", "alt+1..9"]
 key = "prefix+f"
 type = "pane"
 command = "/Users/qingwu/.local/bin/herdr-sessionizer"
+
+[theme]
+name = "solarized"
+auto_switch = false
