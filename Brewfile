@@ -132,8 +132,6 @@ brew "unzip"
 brew "uv"
 # Internet file retriever
 brew "wget"
-# JavaScript package manager
-brew "yarn"
 # Process YAML, JSON, XML, CSV and properties documents from the CLI
 brew "yq"
 # Feature-rich command-line audio/video downloader

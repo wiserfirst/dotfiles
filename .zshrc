@@ -86,7 +86,7 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 # To apply the command to CTRL-T as well
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH:$(yarn global bin):$HOME/bin"
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH:$HOME/bin"
 # section for zplug
 # if [[ ! -d ~/.zplug ]];then
 #   git clone https://github.com/b4b4r07/zplug ~/.zplug
