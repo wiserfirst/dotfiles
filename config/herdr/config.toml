@@ -1,13 +1,13 @@
 onboarding = false
 # herdr keybindings — Meh (ctrl+alt+shift) layer for workspace/tab navigation.
-# Each action also carries a ctrl+alt fallback in case the terminal
-# collapses the shift bit before it reaches the TUI.
+# Each action also carries an alt fallback in case the terminal
+# mangles the Meh chord before it reaches the TUI.
 
 [keys]
-next_workspace     = ["ctrl+alt+shift+j", "ctrl+alt+j", "alt+j"]
-previous_workspace = ["ctrl+alt+shift+k", "ctrl+alt+k", "alt+k"]
-next_tab           = ["prefix+n", "ctrl+alt+shift+l", "ctrl+alt+l", "alt+l"]
-previous_tab       = ["prefix+p", "ctrl+alt+shift+h", "ctrl+alt+h", "alt+h"]
+next_workspace     = ["ctrl+alt+shift+j", "alt+j"]
+previous_workspace = ["ctrl+alt+shift+k", "alt+k"]
+next_tab           = ["prefix+n", "ctrl+alt+shift+l", "alt+l"]
+previous_tab       = ["prefix+p", "ctrl+alt+shift+h", "alt+h"]
 
 # Indexed jumps: Meh+1..9 -> workspace N (Prime-style positional jumps).
 # Default switch_tab = "prefix+1..9" stays active for tabs.
@@ -18,7 +18,7 @@ switch_workspace   = ["ctrl+alt+shift+1..9", "alt+1..9"]
 [[keys.command]]
 key = "prefix+f"
 type = "pane"
-command = "/Users/qingwu/.local/bin/herdr-sessionizer"
+command = "herdr-sessionizer"
 
 [theme]
 name = "solarized"
