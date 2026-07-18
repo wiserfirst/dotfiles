@@ -70,8 +70,12 @@ set colorcolumn=+1
 " for Elixir and OTP source
 let g:alchemist#elixir_erlang_src = "$HOME/opensource"
 
-" make test commands execute using iterm
-let test#strategy = "iterm"
+" make test commands execute using iterm on macOS, plain :! elsewhere
+if has('mac')
+  let test#strategy = "iterm"
+else
+  let test#strategy = "basic"
+endif
 
 " Help File speedups, <enter> to follow tag, delete for back
 au filetype help nnoremap <buffer><cr> <c-]>

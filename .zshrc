@@ -20,14 +20,14 @@ alias ltm='ls -tl | more'
 set -o vi
 
 # Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-  export VISUAL='vim'
-  alias v=vim
-else
+if [[ -z $SSH_CONNECTION ]] && command -v mvim > /dev/null; then
   export EDITOR='mvim'
   export VISUAL='mvim'
   alias v=mvim
+else
+  export EDITOR='vim'
+  export VISUAL='vim'
+  alias v=vim
 fi
 
 alias vi=vim
@@ -63,14 +63,18 @@ export LC_ALL=en_US.UTF-8
 autoload -Uz compinit
 compinit
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
+[[ -x /opt/homebrew/bin/brew ]] && eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # append completions to fpath
 fpath=(${ASDF_DIR}/completions $fpath)
 
 # Erlang/Elixir command history
 export ERL_AFLAGS="-kernel shell_history enabled"
-export KERL_CONFIGURE_OPTIONS="--disable-debug --disable-silent-rules --without-javac --enable-shared-zlib --enable-dynamic-ssl-lib --enable-threads --enable-kernel-poll --enable-darwin-64bit --enable-gettimeofday-as-os-system-time --with-ssl=/opt/homebrew/opt/openssl@3 --without-wx"
+if [[ $OSTYPE == darwin* ]]; then
+  export KERL_CONFIGURE_OPTIONS="--disable-debug --disable-silent-rules --without-javac --enable-shared-zlib --enable-dynamic-ssl-lib --enable-threads --enable-kernel-poll --enable-darwin-64bit --enable-gettimeofday-as-os-system-time --with-ssl=/opt/homebrew/opt/openssl@3 --without-wx"
+else
+  export KERL_CONFIGURE_OPTIONS="--disable-debug --disable-silent-rules --without-javac --enable-shared-zlib --enable-dynamic-ssl-lib --enable-threads --enable-kernel-poll --without-wx"
+fi
 
 eval "$(direnv hook zsh)"
 export GIT_COMPLETION_CHECKOUT_NO_GUESS=1
@@ -101,8 +105,10 @@ test -e $HOME/.iterm2_shell_integration.zsh && source $HOME/.iterm2_shell_integr
 # Created by `pipx` on 2024-06-18 12:32:52
 export PATH="$PATH:$HOME/.local/bin"
 
-# GNU tools and LM Studio CLI (lms)
-export PATH="$(brew --prefix gnu-sed)/libexec/gnubin:$PATH:$HOME/.cache/lm-studio/bin"
+# GNU tools (macOS only; Linux sed is already GNU)
+if command -v brew > /dev/null; then
+  export PATH="$(brew --prefix gnu-sed)/libexec/gnubin:$PATH"
+fi
 
 # add -F to exit immediately if output fits on one screen
 export LESS="-F $LESS"
@@ -156,12 +162,12 @@ alias tt='terminal_titles'
 
 
 # Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/qingwu/.lmstudio/bin"
+export PATH="$PATH:$HOME/.lmstudio/bin"
 # End of LM Studio CLI section
 
 
 # bun completions
-[ -s "/Users/qingwu/.bun/_bun" ] && source "/Users/qingwu/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
