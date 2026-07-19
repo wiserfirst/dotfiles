@@ -138,6 +138,8 @@ brew "yq"
 brew "yt-dlp"
 # Flash ZSA keyboards from your terminal
 brew "zapp"
+# Shell extension to navigate your filesystem faster
+brew "zoxide"
 # UNIX shell (command interpreter)
 brew "zsh"
 # Memory training application

@@ -52,7 +52,6 @@ alias -s gz='tar -xzvf'
 alias -s tgz='tar -xzvf'
 alias -s zip='unzip'
 alias -s bz2='tar -xjvf'
-alias j='fasd_cd -d'
 
 setopt interactivecomments
 
@@ -77,6 +76,9 @@ else
 fi
 
 eval "$(direnv hook zsh)"
+
+# zoxide dir jumps (replaces fasd); j keeps the old muscle memory
+command -v zoxide > /dev/null && eval "$(zoxide init zsh)" && alias j=z
 export GIT_COMPLETION_CHECKOUT_NO_GUESS=1
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
