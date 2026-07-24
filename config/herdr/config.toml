@@ -13,12 +13,35 @@ previous_tab       = ["prefix+p", "ctrl+alt+shift+h", "alt+h"]
 # Default switch_tab = "prefix+1..9" stays active for tabs.
 switch_workspace   = ["ctrl+alt+shift+1..9", "alt+1..9"]
 
+# Copy mode (y = yank): direct chords alongside the prefix+[ default.
+copy_mode          = ["prefix+[", "ctrl+alt+shift+y", "alt+y"]
+
 # Sessionizer: prefix+f opens an fzf picker over repo dirs in a temporary
 # pane; picking one creates-or-focuses that project's workspace.
 [[keys.command]]
 key = "prefix+f"
 type = "pane"
 command = "herdr-sessionizer"
+
+[[keys.command]]
+key = "alt+f"
+type = "popup"
+command = "herdr-sessionizer"
+
+# Workspace picker: fzf over open workspaces only, focus the pick
+# (never creates). Script lives in dotfiles/bin, symlinked to ~/.local/bin.
+[[keys.command]]
+key = "alt+w"
+type = "popup"
+command = "herdr-ws-picker"
+
+# Sidebar spacing: 0.7.4 changed the default row_gap to 0; keep the
+# old one-blank-row spacing between entries.
+[ui.sidebar.spaces]
+row_gap = 1
+
+[ui.sidebar.agents]
+row_gap = 1
 
 [theme]
 name = "solarized"
