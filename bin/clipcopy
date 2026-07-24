@@ -1,0 +1,20 @@
+#!/bin/bash
+# clipcopy — copy stdin to the system clipboard, cross-platform.
+#
+# macOS: pbcopy. Wayland: wl-copy. X11: xclip. Anything else (headless
+# box, SSH session without X forwarding): OSC 52 escape written to the
+# controlling terminal, which asks the *local* terminal emulator to set
+# its clipboard — works over SSH if the emulator supports it (kitty,
+# WezTerm, Ghostty, iTerm2, alacritty; tmux needs `set-clipboard on`).
+
+input=$(cat)
+
+if command -v pbcopy > /dev/null 2>&1; then
+  printf '%s' "$input" | pbcopy
+elif [ -n "$WAYLAND_DISPLAY" ] && command -v wl-copy > /dev/null 2>&1; then
+  printf '%s' "$input" | wl-copy
+elif [ -n "$DISPLAY" ] && command -v xclip > /dev/null 2>&1; then
+  printf '%s' "$input" | xclip -selection clipboard
+else
+  printf '\033]52;c;%s\007' "$(printf '%s' "$input" | base64 | tr -d '\n')" > /dev/tty
+fi

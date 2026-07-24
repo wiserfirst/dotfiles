@@ -1,0 +1,24 @@
+#!/bin/bash
+# copy-path — copy paths to the clipboard as absolute, ~-abbreviated.
+#
+# Usage: copy-path <path>...
+# Relative args are resolved against cwd (no symlink resolution), then
+# $HOME is abbreviated to ~ so the copied path is short and pastes
+# usefully from any directory. Multiple paths join space-separated on
+# one line, ready for a command line.
+
+[ $# -eq 0 ] && exit 0
+
+out=""
+for p in "$@"; do
+  case "$p" in
+    /*) abs=$p ;;
+    *) abs=$PWD/$p ;;
+  esac
+  case "$abs" in
+    "$HOME"/*) abs="~${abs#"$HOME"}" ;;
+  esac
+  out="$out$abs "
+done
+
+printf '%s' "${out% }" | clipcopy

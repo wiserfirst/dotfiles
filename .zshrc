@@ -88,6 +88,27 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 # To apply the command to CTRL-T as well
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
+# ctrl-y in fzf pickers: copy selection to clipboard, keep picker open.
+# CTRL-T copies as absolute ~-paths ({+} = all marked entries); CTRL-R
+# copies the command ({2..} skips the history line number). clipcopy and
+# copy-path live in dotfiles/bin, symlinked to ~/.local/bin.
+export FZF_CTRL_T_OPTS="--bind 'ctrl-y:execute-silent(copy-path {+})+change-header(copied)'"
+export FZF_CTRL_R_OPTS="--bind 'ctrl-y:execute-silent(echo -n {2..} | clipcopy)+change-header(copied)'"
+
+# Fuzzy-complete variable names on `echo $**<TAB>`; plain `echo **<TAB>`
+# still falls through to path completion
+_fzf_complete_echo() {
+  if [[ $prefix == \$* ]]; then
+    prefix=${prefix#\$} _fzf_complete -m -- "$@" < <(printf '%s\n' ${(k)parameters})
+  else
+    _fzf_path_completion "$prefix" "$1"
+  fi
+}
+
+_fzf_complete_echo_post() {
+  sed 's/^/$/'
+}
+
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH:$HOME/bin"
 # section for zplug
 # if [[ ! -d ~/.zplug ]];then
