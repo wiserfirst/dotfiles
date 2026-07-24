@@ -6,8 +6,12 @@ MAPPINGS = {
   'vim'                      => '~/.vim',
   'hammerspoon'              => '~/.hammerspoon',
   'config/herdr/config.toml' => '~/.config/herdr/config.toml',
-  'bin/herdr-sessionizer'    => '~/.local/bin/herdr-sessionizer',
 }
+
+# every executable in bin/ symlinks to ~/.local/bin/<same name>
+Dir['bin/*'].each do |f|
+  MAPPINGS[f] = "~/.local/bin/#{File.basename(f)}" if File.executable?(f)
+end
 
 def link(source, target)
   if File.symlink? target
