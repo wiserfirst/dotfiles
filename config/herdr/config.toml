@@ -16,6 +16,13 @@ switch_workspace   = ["ctrl+alt+shift+1..9", "alt+1..9"]
 # Copy mode (y = yank): direct chords alongside the prefix+[ default.
 copy_mode          = ["prefix+[", "ctrl+alt+shift+y", "alt+y"]
 
+# Back-and-forth toggle between the two most recent panes.
+last_pane          = "alt+;"
+
+# Agent jumps: cycle agent panes directly, across workspaces.
+next_agent         = ["ctrl+alt+shift+n", "alt+n"]
+previous_agent     = ["ctrl+alt+shift+p", "alt+p"]
+
 # Sessionizer: prefix+f opens an fzf picker over repo dirs in a temporary
 # pane; picking one creates-or-focuses that project's workspace.
 [[keys.command]]
@@ -34,6 +41,11 @@ command = "herdr-sessionizer"
 key = "alt+w"
 type = "popup"
 command = "herdr-ws-picker"
+
+# Sidebar agents as an attention queue (needs-input first) instead of
+# grouped by space; pairs with the alt+n/alt+p agent jumps.
+[ui]
+agent_panel_sort = "priority"
 
 # Sidebar spacing: 0.7.4 changed the default row_gap to 0; keep the
 # old one-blank-row spacing between entries.
