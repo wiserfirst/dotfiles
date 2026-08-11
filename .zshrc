@@ -19,14 +19,12 @@ alias ltm='ls -tl | more'
 # Set bash command line editting mode to vi
 set -o vi
 
-# Preferred editor for local and remote sessions
+export EDITOR='vim'
+export VISUAL='vim'
+# editor alias for local and remote sessions
 if [[ -z $SSH_CONNECTION ]] && command -v mvim > /dev/null; then
-  export EDITOR='mvim'
-  export VISUAL='mvim'
   alias v=mvim
 else
-  export EDITOR='vim'
-  export VISUAL='vim'
   alias v=vim
 fi
 
