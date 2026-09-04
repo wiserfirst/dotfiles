@@ -181,6 +181,17 @@ terminal_titles() {
 
 alias tt='terminal_titles'
 
+# Remove every history entry containing the given string, from the
+# history file AND this shell's memory (fc -p swaps in a fresh list
+# read from the cleaned file). Never run `fc -P` afterwards: it pops
+# the old, dirty list back. Other open shells keep their own copy
+# until they also run forget or exit.
+forget() {
+  local tmp=${HISTFILE}.forget
+  LC_ALL=C grep -v -- "$1" "$HISTFILE" > "$tmp" && command mv -f "$tmp" "$HISTFILE"
+  fc -p "$HISTFILE" "$HISTSIZE" "$SAVEHIST"
+}
+
 
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:$HOME/.lmstudio/bin"
