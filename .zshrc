@@ -107,7 +107,19 @@ _fzf_complete_echo_post() {
   sed 's/^/$/'
 }
 
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH:$HOME/bin"
+# PATH: prepends first (highest priority), appends last.
+# Merges the asdf, bun, bend, pipx, and LM Studio entries.
+export BUN_INSTALL="$HOME/.bun"
+typeset -U path PATH
+path=(
+  "$HOME/.bend/bin"
+  "$BUN_INSTALL/bin"
+  "${ASDF_DATA_DIR:-$HOME/.asdf}/shims"
+  $path
+  "$HOME/bin"
+  "$HOME/.local/bin"
+  "$HOME/.lmstudio/bin"
+)
 # section for zplug
 # if [[ ! -d ~/.zplug ]];then
 #   git clone https://github.com/b4b4r07/zplug ~/.zplug
@@ -122,9 +134,6 @@ export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH:$HOME/bin"
 # fi
 # zplug load
 test -e $HOME/.iterm2_shell_integration.zsh && source $HOME/.iterm2_shell_integration.zsh || true
-
-# Created by `pipx` on 2024-06-18 12:32:52
-export PATH="$PATH:$HOME/.local/bin"
 
 # GNU tools (macOS only; Linux sed is already GNU)
 if command -v brew > /dev/null; then
@@ -193,14 +202,14 @@ forget() {
 }
 
 
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:$HOME/.lmstudio/bin"
-# End of LM Studio CLI section
-
-
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+# worktree-run: run a command in each main worktree, one after another
+wr() {
+  local wt
+  for wt in autorun feat1 medi-apps-platform sandbox; do
+    print -P "\n%F{cyan}== $wt ==%f"
+    (cd ~/workspace/$wt && eval "$*") || print -P "%F{red}failed in $wt%f"
+  done
+}
